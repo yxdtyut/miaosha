@@ -1,0 +1,11 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yxdtyut.miaosha.mapper.GoodsMapper">
+    <select id="listGoodsVo" resultType="com.yxdtyut.miaosha.vo.GoodsVo">
+        select goods.id, goods_name as goodsName, goods_title as goodsTitle, goods_img as goodsImg,
+        goods_detail as goodsDetail, goods_price as goodsPrice, goods_stock as goodsStock,
+        miaosha_price as miaoshaPrice, stock_count as stockCount from goods left join miaosha_goods as mg
+        on goods.id = mg.goods_id
+    </select>
+</mapper>
