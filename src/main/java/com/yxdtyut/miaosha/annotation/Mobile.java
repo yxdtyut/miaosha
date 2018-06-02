@@ -1,5 +1,8 @@
 package com.yxdtyut.miaosha.annotation;
 
+import com.yxdtyut.miaosha.annotation.validator.MobileConstraintValidator;
+
+import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
@@ -11,23 +14,18 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
  * @Author : yangxudong
- * @Description :   自定义用户的注解类
- * @Date : 下午1:53 2018/5/30
+ * @Description :   主键类
+ * @Date : 上午10:58 2018/5/31
  */
 @Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER })
 @Retention(RUNTIME)
 @Documented
-public @interface UserAccess {
+@Constraint(validatedBy = {MobileConstraintValidator.class })
+public @interface Mobile {
 
-    String message() default "{请先登陆用户!}";
+    String message() default "{手机号格式不正确}";
 
     Class<?>[] groups() default { };
 
     Class<? extends Payload>[] payload() default { };
-
-    boolean mustLogin() default true;
-
-    int seconds();
-    int maxCount();
-
 }

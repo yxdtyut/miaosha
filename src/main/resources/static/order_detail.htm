@@ -102,7 +102,7 @@ function getOrderDetail(){
 			orderId:orderId
 		},
 		success:function(data){
-			if(data.code == 0){
+			if(data.code == 200){
 				render(data.data);
 			}else{
 				layer.msg(data.msg);

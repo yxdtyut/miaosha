@@ -1,5 +1,6 @@
 package com.yxdtyut.miaosha.vo;
 
+import com.yxdtyut.miaosha.annotation.Mobile;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
@@ -12,6 +13,7 @@ import javax.validation.constraints.NotNull;
 @Data
 public class LoginVo {
     @NotNull(message = "登陆名不能为空")
+    @Mobile
     private String mobile;
     @NotNull(message = "密码不能为空")
     private String password;

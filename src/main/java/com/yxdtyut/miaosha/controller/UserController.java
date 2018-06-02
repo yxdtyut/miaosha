@@ -13,10 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -35,9 +32,14 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/do_login")
-    public Result<Boolean> login(@Valid LoginVo loginVo
+    public Result<String> login(@Valid LoginVo loginVo
             , HttpServletResponse response) {
-        Boolean flag =  userService.login(loginVo,response);
-        return Result.success(flag, response);
+        String token =  userService.login(loginVo,response);
+        return Result.success(token);
+    }
+
+    @GetMapping("/info")
+    public Result<MiaoshaUser> userInfo(MiaoshaUser user) {
+        return Result.success(user);
     }
 }

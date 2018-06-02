@@ -28,7 +28,7 @@ public class Result<T> {
     }
 
     /**成功时候调用的方法.*/
-    public static <T> Result<T> success(T data, HttpServletResponse response) {
+    public static <T> Result<T> success(T data) {
         return new Result<T>(data);
     }
 

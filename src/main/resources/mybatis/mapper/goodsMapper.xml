@@ -2,10 +2,26 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yxdtyut.miaosha.mapper.GoodsMapper">
+
+    <!--获取商品列表-->
     <select id="listGoodsVo" resultType="com.yxdtyut.miaosha.vo.GoodsVo">
         select goods.id, goods_name as goodsName, goods_title as goodsTitle, goods_img as goodsImg,
         goods_detail as goodsDetail, goods_price as goodsPrice, goods_stock as goodsStock,
         miaosha_price as miaoshaPrice, stock_count as stockCount from goods left join miaosha_goods as mg
         on goods.id = mg.goods_id
     </select>
+
+    <!--根据商品id获取商品对象-->
+    <select id="getGoodsVoByGoodsId" parameterType="string" resultType="com.yxdtyut.miaosha.vo.GoodsVo">
+        select goods.id, goods_name as goodsName, goods_title as goodsTitle, goods_img as goodsImg,
+        goods_detail as goodsDetail, goods_price as goodsPrice, goods_stock as goodsStock,
+        miaosha_price as miaoshaPrice, stock_count as stockCount, start_date as startDate,
+        end_date as endDate from goods left join miaosha_goods as mg
+        on goods.id = mg.goods_id where goods.id = #{goodsId}
+    </select>
+
+    <!--根据商品id获取商品对象-->
+    <update id="reduceMiaoshaGoodsStock" >
+        update miaosha_goods set stock_count = stock_count - 1 where goods_id = #{goodsId} and stock_count > 0
+    </update>
 </mapper>

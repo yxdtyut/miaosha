@@ -23,4 +23,15 @@ public class GoodsServiceImpl implements GoodsService {
     public List<GoodsVo> listGoodsVo() {
         return goodsMapper.listGoodsVo();
     }
+
+    @Override
+    public GoodsVo getGoodsVoByGoodsId(String goodsId) {
+        return goodsMapper.getGoodsVoByGoodsId(goodsId);
+    }
+
+    @Override
+    public Integer reduceMiaoshaGoodsStock(String id) {
+        return goodsMapper.reduceMiaoshaGoodsStock(id);
+    }
+
 }

@@ -1,7 +1,6 @@
 package com.yxdtyut.miaosha.service.impl;
 
 import com.yxdtyut.miaosha.common.CommonParams;
-import com.yxdtyut.miaosha.common.UserContext;
 import com.yxdtyut.miaosha.entity.MiaoshaUser;
 import com.yxdtyut.miaosha.exception.GlobleException;
 import com.yxdtyut.miaosha.key.UserKey;
@@ -36,7 +35,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public Boolean login(LoginVo loginVo, HttpServletResponse response) {
+    public String login(LoginVo loginVo, HttpServletResponse response) {
         String userId = loginVo.getMobile();
         String password = loginVo.getPassword();
         MiaoshaUser user = userMapper.getMiaoshaUserByUserId(userId);
@@ -52,7 +51,7 @@ public class UserServiceImpl implements UserService {
         String cookieToken = UUIDUtils.uuid();
         redisService.set(UserKey.token, cookieToken, user);
         saveMiaoshaUserToCookies(response,user,cookieToken);
-        return true;
+        return cookieToken;
     }
 
     private void saveMiaoshaUserToCookies(HttpServletResponse response, MiaoshaUser user, String cookieToken) {

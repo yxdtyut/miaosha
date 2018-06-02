@@ -2,6 +2,7 @@ package com.yxdtyut.miaosha.mapper;
 
 import com.yxdtyut.miaosha.vo.GoodsVo;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -13,4 +14,8 @@ import java.util.List;
 @Mapper
 public interface GoodsMapper {
     List<GoodsVo> listGoodsVo();
+
+    GoodsVo getGoodsVoByGoodsId(@Param("goodsId") String goodsId);
+
+    Integer reduceMiaoshaGoodsStock(@Param("goodsId") String goodsId);
 }

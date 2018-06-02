@@ -1,7 +1,6 @@
 package com.yxdtyut.miaosha.service;
 
 
-import com.yxdtyut.miaosha.entity.MiaoshaUser;
 import com.yxdtyut.miaosha.vo.LoginVo;
 
 import javax.servlet.http.HttpServletResponse;
@@ -13,5 +12,5 @@ import javax.servlet.http.HttpServletResponse;
  */
 public interface UserService {
 
-    Boolean login(LoginVo loginVo, HttpServletResponse response);
+    String login(LoginVo loginVo, HttpServletResponse response);
 }
